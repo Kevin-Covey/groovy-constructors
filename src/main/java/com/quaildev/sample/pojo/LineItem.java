@@ -1,5 +1,7 @@
 package com.quaildev.sample.pojo;
 
+import com.quaildev.sample.pojo.visitor.OrderVisitor;
+
 import static org.apache.commons.lang3.builder.EqualsBuilder.reflectionEquals;
 import static org.apache.commons.lang3.builder.HashCodeBuilder.reflectionHashCode;
 
@@ -8,6 +10,10 @@ public class LineItem {
     private String description;
     private double price;
     private int quantity;
+
+    public OrderVisitor accept(OrderVisitor visitor) {
+        return visitor.visit(this);
+    }
 
     public String getDescription() {
         return description;
@@ -42,5 +48,4 @@ public class LineItem {
     public int hashCode() {
         return reflectionHashCode(this);
     }
-
 }

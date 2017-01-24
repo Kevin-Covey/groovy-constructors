@@ -1,11 +1,17 @@
 package com.quaildev.sample.pojo;
 
+import com.quaildev.sample.pojo.visitor.OrderVisitor;
+
 public class Address {
 
     private String street;
     private String city;
     private String state;
     private int zip;
+
+    public final void accept(OrderVisitor visitor) {
+        visitor.visit(this);
+    }
 
     public String getStreet() {
         return street;

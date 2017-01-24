@@ -1,11 +1,19 @@
 package com.quaildev.sample.pojo;
 
+import com.quaildev.sample.pojo.visitor.OrderVisitor;
+
 import java.util.List;
 
 public class Order {
 
     private Customer customer;
     private List<LineItem> lineItems;
+
+    public final void accept(OrderVisitor visitor) {
+        visitor.visit(this);
+        customer.accept(visitor);
+        lineItems.forEach(li -> li.accept(visitor));
+    }
 
     public Customer getCustomer() {
         return customer;

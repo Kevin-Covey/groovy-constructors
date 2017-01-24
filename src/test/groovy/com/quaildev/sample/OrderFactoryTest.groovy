@@ -23,7 +23,7 @@ class OrderFactoryTest extends Specification {
             state == 'IA'
             zip == 50309
         }
-        
+
         with(order.customer.shippingAddress) {
             street == '1 Home Dr'
             city == 'Monroe'

@@ -1,11 +1,19 @@
 package com.quaildev.sample.pojo;
 
+import com.quaildev.sample.pojo.visitor.OrderVisitor;
+
 public class Customer {
 
     private String firstName;
     private String lastName;
     private Address billingAddress;
     private Address shippingAddress;
+
+    public final void accept(OrderVisitor visitor) {
+        visitor.visit(this);
+        billingAddress.accept(visitor);
+        shippingAddress.accept(visitor);
+    }
 
     public String getFirstName() {
         return firstName;
